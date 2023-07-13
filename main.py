@@ -31,3 +31,18 @@ def min_subnet(ips):
             return str(net)
     return None
 
+def test_min_subnet():
+    assert min_subnet({'192.0.2.0', '192.0.2.1'}) == '192.0.2.0/31', 'should be /31'
+    assert min_subnet({'192.0.2.0', '192.0.2.130'}) == '192.0.2.0/24', 'should be /24'
+    assert min_subnet({'192.0.2.255', '192.0.3.0'}) == '192.0.2.0/23', 'should be /23'
+    assert min_subnet({'192.0.2.0', '192.0.2.1', '192.0.2.2', '192.0.2.3'}) == '192.0.2.0/30', 'should be /30'
+    assert min_subnet({'192.0.2.0'}) == '192.0.2.0/32', 'should be /32'
+    assert min_subnet({'192.0.2.0', '192.0.2.255'}) == '192.0.2.0/24', 'should be /24'
+    
+
+
+
+if __name__ == "__main__":
+    test_min_subnet()
+    print("All tests are passed")
+    
